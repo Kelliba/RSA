@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>RSA</title>
+		<script type="text/javascript" src="eel.js"></script>
+	</head>
+
+	<body>
+		<style>
+			body{
+				background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOeoF-pnJHCw0KXpZEOVrqRX7IPO0vvyMJvg&usqp=CAU)
+			}
+			#two{
+				color: #e02121;
+				text-align:center;
+			}
+			#btn{
+				position: relative;
+				left: 50%;
+				transform: translate(-50%, 0);
+			}
+			#btnn{
+				position: relative;
+				left: 50%;
+				transform: translate(-50%, 0);
+			}
+			#btn{
+				position: relative;
+			    left: 50%;
+			    transform: translate(-50%, 0);
+			    cursor: pointer;
+			    appearance:none;
+			    -webkit-appearance:none;
+			    padding:10px;
+			    border:none;
+			    background-color:#b92b2b;
+			    color:#fff;
+			    font-weight:600;
+			    border-radius:5px;
+			    width:30%;
+			}
+			#btn:hover {
+				color: #fff;
+				background-color:#ababab;
+			}
+			#btnn {
+			  position: relative;
+			  left: 50%;
+			  transform: translate(-50%, 0);
+			  cursor: pointer;
+			  appearance:none;
+			  -webkit-appearance:none;
+			  padding:10px;
+			  border:none;
+			  background-color:#1cbb17;
+			  color:#fff;
+			  font-weight:600;
+			  border-radius:5px;
+			  width:30%;
+			}
+			#btnn:hover {
+				color: #fff;
+				background-color:#ababab;
+			}
+			textarea{
+				display: block;
+				width: 250px;
+				height: 100px;
+				margin: 0 auto;
+				background-color: #000;
+				color: #fff;
+				border: 1px solid #fff;
+			}
+			#outdata{
+				position: relative;
+			    left: 50%;
+			    transform: translate(-50%, 0);
+			    background: #000;
+				color: #fff;
+			}
+			p{
+				color: #fff;
+				text-align: center;
+
+			}
+			#file_enc{
+				position: relative;
+			    left: 50%;
+			    transform: translate(-50%, 0);
+			    background: #000;
+				color: #fff;
+			}
+		</style>
+		<div>
+			<h2 id="two"><strong>RSA CRYPTO</strong></h2>
+			<div>
+				<input type="text" id="file_enc" value=" ">
+			</div><br>
+		</div>			
+		
+		<div>
+			<textarea type="text" id="data"></textarea>
+		</div><br>
+
+		<div>
+			<input type="button" id="btn" value="ENCODE">
+		</div><br><br>
+
+		<div>
+			<input type="file" id="outdata">
+		</div><br>
+		<div>
+			<input type="button" id="btnn" value="DECODE">
+		</div>
+		<p>Все файлы хранятся в папке C:/RSA_logs/</p>
+
+		<script type="text/javascript">
+			
+			let btn = document.querySelector("#btn");
+			btn.addEventListener("click", encode);
+			let btnn = document.querySelector("#btnn");
+			btnn.addEventListener("click", decode);
+
+			async function encode() {
+				let data = document.querySelector("#data").value;
+				let file = document.querySelector("#file_enc").value;
+
+				await eel.RSA_dir();
+				await eel.cipher(data,file)();
+			}
+
+			async function decode() {
+				let data = document.getElementById("outdata").files[0].name;
+				let text = await eel.uncipher(data)();
+			}
+
+		</script>
+
+	</body>
+
+</html>
+
